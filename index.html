@@ -35,13 +35,13 @@
 <body class="flex flex-col min-h-screen items-center justify-between p-4 md:p-8">
 
   <script>
-    const sfxSelect = new Audio('select_a_game.mp3');
+    const sfxSelect = new Audio('select_game.mp3');
     const sfxJump = new Audio('jump!.mp3');
-    const sfxBgmMenu = new Audio('select_a_game.mp3');
+    const sfxBgmMenu = new Audio('select_game_2.mp3');
     const sfxIntro = new Audio('rice_jump_galary!.mp3');
     const sfxDie = new Audio('die.mp3');
     const sfxItem = new Audio('item_2.wav');
-    const sfxGun = new Audio('gun_shoot!.mp3');
+    const sfxGun = new Audio('gun_shoot!_2.mp3');
 
     function playAudio(audioObj, loop = false) {
       try {
@@ -60,7 +60,7 @@
 
     function startIntroBgm() { playAudio(sfxIntro, true); }
     function stopIntroBgm() { stopAudio(sfxIntro); }
-    function startMenuBgmLoop() { playAudio(sfxBgmMenu, false); }
+    function startMenuBgmLoop() { playAudio(sfxBgmMenu, true); }
     function stopMenuBgmLoop() { stopAudio(sfxBgmMenu); }
   </script>
 
@@ -81,7 +81,7 @@
       <button onclick="event.stopPropagation(); enterGalleryMenu();" class="px-10 py-5 bg-gradient-to-r from-amber-500 via-orange-500 to-red-500 hover:scale-105 active:scale-95 text-slate-950 font-game text-xl sm:text-2xl rounded-2xl shadow-[0_0_30px_rgba(245,158,11,0.6)] border-4 border-amber-300 transition-all duration-300 flex items-center gap-3 cursor-pointer">
         <i data-lucide="play-circle" class="w-8 h-8"></i> GAME START!
       </button>
-      <span class="text-xs text-slate-500 font-digital">RICE JUMP! DOMAIN CONNECTOR</span>
+      <span class="text-xs text-slate-500 font-digital">© Super Rice JamJam Studio. All rights reserved.</span>
     </div>
   </div>
 
@@ -92,17 +92,17 @@
         <h2 class="text-xl sm:text-2xl font-black font-digital text-amber-400">RICE JUMP! GALLERY!</h2>
       </div>
       <div class="flex items-center gap-2">
-        <span class="text-xs text-slate-400 font-digital">🎯 원하는 버전을 선택하세요</span>
+        <span class="text-xs text-slate-400 font-digital">🎯 화살표 키 또는 터치로 선택 후 실행하세요</span>
       </div>
     </div>
 
     <div class="w-full max-w-4xl grid grid-cols-1 md:grid-cols-3 gap-6 my-auto">
-      <div onclick="redirectToDomain(0)" id="card-0" class="gallery-card group bg-slate-900/90 border-2 border-slate-800 hover:border-cyan-400 rounded-3xl p-6 flex flex-col justify-between cursor-pointer shadow-2xl relative overflow-hidden">
+      <div onclick="handleCardClick(0)" id="card-0" class="gallery-card group bg-slate-900/90 border-2 border-slate-800 hover:border-cyan-400 rounded-3xl p-6 flex flex-col justify-between cursor-pointer shadow-2xl relative overflow-hidden">
         <div class="absolute -right-4 -bottom-4 w-24 h-24 bg-cyan-500/10 rounded-full blur-xl group-hover:bg-cyan-500/25 transition"></div>
         <div>
           <div class="flex justify-between items-center mb-2">
             <span class="px-3 py-1 bg-cyan-950 text-cyan-400 font-digital font-bold text-xs rounded-full border border-cyan-500/30">Version 1.0</span>
-            <span id="badge-0" class="text-2xl">🌾</span>
+            <span id="badge-0" class="text-2xl"></span>
           </div>
           <h3 class="text-2xl font-bold text-white group-hover:text-cyan-300 font-digital mb-4">Rice Jump!</h3>
         </div>
@@ -111,7 +111,7 @@
         </button>
       </div>
 
-      <div onclick="redirectToDomain(1)" id="card-1" class="gallery-card group bg-slate-900/90 border-2 border-slate-800 hover:border-orange-400 rounded-3xl p-6 flex flex-col justify-between cursor-pointer shadow-2xl relative overflow-hidden">
+      <div onclick="handleCardClick(1)" id="card-1" class="gallery-card group bg-slate-900/90 border-2 border-slate-800 hover:border-orange-400 rounded-3xl p-6 flex flex-col justify-between cursor-pointer shadow-2xl relative overflow-hidden">
         <div class="absolute -right-4 -bottom-4 w-24 h-24 bg-orange-500/10 rounded-full blur-xl group-hover:bg-orange-500/25 transition"></div>
         <div>
           <div class="flex justify-between items-center mb-2">
@@ -125,7 +125,7 @@
         </button>
       </div>
 
-      <div onclick="redirectToDomain(2)" id="card-2" class="gallery-card group bg-slate-900/90 border-2 border-slate-800 hover:border-purple-400 rounded-3xl p-6 flex flex-col justify-between cursor-pointer shadow-2xl relative overflow-hidden">
+      <div onclick="handleCardClick(2)" id="card-2" class="gallery-card group bg-slate-900/90 border-2 border-slate-800 hover:border-purple-400 rounded-3xl p-6 flex flex-col justify-between cursor-pointer shadow-2xl relative overflow-hidden">
         <div class="absolute -right-4 -bottom-4 w-24 h-24 bg-purple-500/10 rounded-full blur-xl group-hover:bg-purple-500/25 transition"></div>
         <div>
           <div class="flex justify-between items-center mb-2">
@@ -141,7 +141,7 @@
     </div>
 
     <div class="w-full max-w-4xl mt-4">
-      <div onclick="redirectToDomain(3)" id="card-3" class="gallery-card group bg-[#8b9bb4]/10 border-2 border-slate-800 hover:border-emerald-400 rounded-3xl p-6 flex flex-col sm:flex-row justify-between items-center cursor-pointer shadow-2xl relative overflow-hidden">
+      <div onclick="handleCardClick(3)" id="card-3" class="gallery-card group bg-[#8b9bb4]/10 border-2 border-slate-800 hover:border-emerald-400 rounded-3xl p-6 flex flex-col sm:flex-row justify-between items-center cursor-pointer shadow-2xl relative overflow-hidden">
         <div class="absolute inset-0 bg-emerald-500/5 opacity-50 pointer-events-none"></div>
         <div class="flex items-center gap-4 mb-4 sm:mb-0">
           <div class="w-14 h-14 bg-emerald-950/80 rounded-2xl border border-emerald-500/50 flex items-center justify-center font-game text-emerald-400 text-xl shadow-inner">
@@ -163,7 +163,7 @@
     </div>
 
     <div class="w-full max-w-4xl text-center text-xs text-slate-500 font-digital py-2">
-      💡 방향키(←, →, ↑, ↓)로 선택하고 Enter 또는 Space를 누르세요.
+      💡 방향키(←, →, ↑, ↓)로 이동하고 Enter/Space 또는 두 번 탭하여 실행하세요.
     </div>
   </div>
 
@@ -216,7 +216,7 @@
   </div>
 
   <footer class="w-full max-w-5xl text-center text-[11px] text-slate-600 mt-6 border-t border-slate-900 pt-3">
-    <p>© 2026 Rice Jump! Gallery! Studio. Direct Domain Connector Active.</p>
+    <p>© Super Rice JamJam Studio. All rights reserved.</p>
   </footer>
 
   <div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 px-4 py-2.5 bg-slate-900 border border-amber-500/30 text-amber-200 rounded-xl text-xs flex items-center gap-2 shadow-2xl opacity-0 translate-y-4 pointer-events-none transition-all duration-300 z-50">
@@ -270,7 +270,19 @@
       showToast("✨ 갤러리 메뉴가 시작되었습니다!");
     }
 
+    function handleCardClick(index) {
+      if (selectedCardIndex === index) {
+        redirectToDomain(index);
+      } else {
+        selectedCardIndex = index;
+        playAudio(sfxSelect);
+        updateCardHighlight();
+        showToast(`✨ 게임이 선택되었습니다. 한 번 더 누르면 실행됩니다.`);
+      }
+    }
+
     function redirectToDomain(index) {
+      stopMenuBgmLoop();
       playAudio(sfxSelect);
       selectedCardIndex = index;
       updateCardHighlight();
@@ -282,7 +294,6 @@
           openLcdGame();
         }, 400);
       } else {
-        stopMenuBgmLoop();
         showToast(`🚀 해당 월드로 이동합니다...`);
         setTimeout(() => {
           try {
