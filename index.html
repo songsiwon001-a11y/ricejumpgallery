@@ -38,9 +38,10 @@
     const sfxSelect = new Audio('select_a_game.mp3');
     const sfxJump = new Audio('jump!.mp3');
     const sfxBgmMenu = new Audio('select_a_game.mp3');
-    const sfxIntro = new Audio('rice_jump_galary!_2.mp3');
+    const sfxIntro = new Audio('rice_jump_galary!.mp3');
     const sfxDie = new Audio('die.mp3');
     const sfxItem = new Audio('item_2.wav');
+    const sfxGun = new Audio('gun_shoot!.mp3');
 
     function playAudio(audioObj, loop = false) {
       try {
@@ -59,7 +60,7 @@
 
     function startIntroBgm() { playAudio(sfxIntro, true); }
     function stopIntroBgm() { stopAudio(sfxIntro); }
-    function startMenuBgmLoop() { playAudio(sfxBgmMenu, true); }
+    function startMenuBgmLoop() { playAudio(sfxBgmMenu, false); }
     function stopMenuBgmLoop() { stopAudio(sfxBgmMenu); }
   </script>
 
@@ -188,19 +189,24 @@
 
         <div id="lcdMsg" class="absolute inset-0 bg-[#9ead86]/90 flex flex-col items-center justify-center text-center p-4">
           <h3 class="font-game text-xl mb-2 text-[#2d3325]">RICE JUMP! LCD</h3>
-          <p class="font-digital text-xs mb-4">장애물을 피하고 쌀알 아이템을 먹으며 스위치에 도달하세요!</p>
+          <p class="font-digital text-xs mb-4">장애물을 피하고 쌀알 및 물총 아이템을 획득해 스위치에 도달하세요!</p>
           <button onclick="startLcdGame()" class="px-6 py-2.5 bg-[#3b4431] text-[#9ead86] font-game text-xs rounded-xl shadow-lg hover:scale-105 transition">GAME START</button>
         </div>
       </div>
 
       <div class="w-full flex justify-between items-center mt-6 px-4">
         <div class="flex gap-2">
-          <button onclick="lcdJump()" class="w-20 h-16 bg-[#556045] hover:bg-[#434c35] active:scale-95 text-[#9ead86] font-game text-xs rounded-2xl border-2 border-[#2d3325] shadow-md flex flex-col items-center justify-center cursor-pointer">
+          <button onclick="lcdJump()" class="w-18 h-16 bg-[#556045] hover:bg-[#434c35] active:scale-95 text-[#9ead86] font-game text-xs rounded-2xl border-2 border-[#2d3325] shadow-md flex flex-col items-center justify-center cursor-pointer">
             <span>▲</span><span class="text-[9px] mt-0.5">JUMP</span>
           </button>
         </div>
+        <div class="flex gap-2">
+          <button onclick="lcdShoot()" id="shootBtn" class="w-18 h-16 bg-[#434c35] hover:bg-[#353d29] active:scale-95 text-[#9ead86] font-game text-xs rounded-2xl border-2 border-[#2d3325] shadow-md flex flex-col items-center justify-center cursor-pointer opacity-50 pointer-events-none transition">
+            <span>💦</span><span class="text-[9px] mt-0.5">FIRE</span>
+          </button>
+        </div>
         <div class="text-center font-digital text-[10px] text-[#434c35] hidden sm:block">
-          [SPACE / W / ↑] 점프하여 장애물 회피 & 아이템 획득
+          [SPACE/↑] 점프 | [SHIFT] 물총 발사
         </div>
         <div class="flex gap-2">
           <button onclick="closeLcdGame()" class="px-4 py-3 bg-[#556045] hover:bg-[#434c35] text-[#9ead86] font-game text-[10px] rounded-xl border-2 border-[#2d3325] cursor-pointer">EXIT</button>
@@ -323,6 +329,9 @@
         if (e.code === 'Space' || e.code === 'ArrowUp' || e.code === 'KeyW') {
           lcdJump();
           e.preventDefault();
+        } else if (e.code === 'ShiftLeft' || e.code === 'ShiftRight' || e.code === 'KeyF') {
+          lcdShoot();
+          e.preventDefault();
         } else if (e.code === 'Escape') {
           closeLcdGame();
           e.preventDefault();
@@ -361,9 +370,11 @@
     let lcdGameRunning = false;
     let lcdScore = 0;
     let lcdStage = 1;
-    let player = { x: 50, y: 120, vy: 0, gravity: 0.6, jumpPower: -10, isGrounded: true, size: 20 };
+    let player = { x: 50, y: 120, vy: 0, gravity: 0.6, jumpPower: -10, isGrounded: true, size: 20, hasWaterGun: false };
     let obstacles = [];
     let items = [];
+    let waterBullets = [];
+    let waterGunItem = null;
     let switchObj = { x: 750, y: 110, w: 25, h: 30, active: false };
     let gameDist = 0;
 
@@ -394,9 +405,13 @@
       player.y = 120;
       player.vy = 0;
       player.isGrounded = true;
+      player.hasWaterGun = false;
       
       obstacles = [];
       items = [];
+      waterBullets = [];
+      
+      document.getElementById('shootBtn').classList.add('opacity-50', 'pointer-events-none');
       
       const obstacleCount = 3 + Math.floor(Math.random() * 4);
       let lastObsX = 220;
@@ -421,6 +436,14 @@
         });
       }
 
+      waterGunItem = {
+        x: 350 + Math.floor(Math.random() * 200),
+        y: 110,
+        w: 16,
+        h: 16,
+        collected: false
+      };
+
       switchObj.x = lastObsX + 200 + Math.floor(Math.random() * 150);
       switchObj.active = false;
 
@@ -435,6 +458,18 @@
         player.vy = player.jumpPower;
         player.isGrounded = false;
       }
+    }
+
+    function lcdShoot() {
+      if (!lcdGameRunning || !player.hasWaterGun) return;
+      playAudio(sfxGun);
+      waterBullets.push({
+        x: player.x + 20,
+        y: player.y + 10,
+        vx: 6,
+        w: 8,
+        h: 4
+      });
     }
 
     function lcdLoop() {
@@ -465,6 +500,25 @@
       ctx.moveTo(0, groundLevel + 15);
       ctx.lineTo(canvas.width, groundLevel + 15);
       ctx.stroke();
+
+      ctx.fillStyle = '#1d4ed8';
+      waterBullets.forEach((bullet, index) => {
+        bullet.x += bullet.vx;
+        ctx.fillRect(bullet.x - gameDist + 100, bullet.y, bullet.w, bullet.h);
+
+        obstacles.forEach((obs, obsIndex) => {
+          if (
+            bullet.x < obs.x + obs.w &&
+            bullet.x + bullet.w > obs.x &&
+            bullet.y < groundLevel + 15 &&
+            bullet.y + bullet.h > groundLevel + 15 - obs.h
+          ) {
+            obstacles.splice(obsIndex, 1);
+            waterBullets.splice(index, 1);
+            lcdScore += 50;
+          }
+        });
+      });
 
       ctx.fillStyle = '#2d3325';
       obstacles.forEach(obs => {
@@ -510,6 +564,29 @@
         }
       });
 
+      if (waterGunItem && !waterGunItem.collected) {
+        const wgScreenX = waterGunItem.x - gameDist + 100;
+        ctx.fillStyle = '#0284c7';
+        ctx.beginPath();
+        ctx.roundRect(wgScreenX, groundLevel + 15 - 40, waterGunItem.w, waterGunItem.h, 3);
+        ctx.fill();
+        ctx.fillStyle = '#ffffff';
+        ctx.font = '8px sans-serif';
+        ctx.fillText('🔫', wgScreenX - 2, groundLevel + 15 - 28);
+
+        if (
+          player.x < wgScreenX + waterGunItem.w &&
+          player.x + player.size > wgScreenX &&
+          player.y + player.size > groundLevel + 15 - 50
+        ) {
+          waterGunItem.collected = true;
+          player.hasWaterGun = true;
+          playAudio(sfxItem);
+          document.getElementById('shootBtn').classList.remove('opacity-50', 'pointer-events-none');
+          showToast("💦 특별 물총 아이템 획득! [SHIFT] 또는 발사 버튼을 누르세요!");
+        }
+      }
+
       const switchScreenX = switchObj.x - gameDist + 100;
       ctx.fillStyle = switchObj.active ? '#4e5d3d' : '#2d3325';
       ctx.fillRect(switchScreenX, groundLevel + 15 - 30, 18, 30);
@@ -538,6 +615,10 @@
       ctx.beginPath();
       ctx.ellipse(player.x + 10, player.y + 10, 9, 12, Math.PI / 6, 0, Math.PI * 2);
       ctx.fill();
+      if (player.hasWaterGun) {
+        ctx.fillStyle = '#0284c7';
+        ctx.fillRect(player.x + 12, player.y + 6, 10, 5);
+      }
 
       lcdAnimId = requestAnimationFrame(lcdLoop);
     }
