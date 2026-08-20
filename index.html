@@ -37,7 +37,7 @@
   <script>
     const sfxSelect = new Audio('select_game.mp3');
     const sfxJump = new Audio('jump!.mp3');
-    const sfxBgmMenu = new Audio('select_game_2.mp3');
+    const sfxBgmMenu = new Audio('select_a_game.mp3');
     const sfxIntro = new Audio('rice_jump_galary!.mp3');
     const sfxDie = new Audio('die.mp3');
     const sfxItem = new Audio('item_2.wav');
@@ -60,7 +60,8 @@
 
     function startIntroBgm() { playAudio(sfxIntro, true); }
     function stopIntroBgm() { stopAudio(sfxIntro); }
-    function startMenuBgmLoop() { playAudio(sfxBgmMenu, true); }
+    
+    function startMenuBgmLoop() { playAudio(sfxBgmMenu, true); } 
     function stopMenuBgmLoop() { stopAudio(sfxBgmMenu); }
   </script>
 
