@@ -87,7 +87,7 @@
   </div>
 
   <div id="galleryMenu" class="fixed inset-0 bg-[#070b19] z-40 hidden flex flex-col items-center justify-between p-4 md:p-8 overflow-y-auto">
-    <div class="w-full max-w-4xl flex justify-between items-center bg-slate-900/90 border-2 border-amber-500/50 rounded-2xl p-4 shadow-xl mb-6">
+    <div class="w-full max-w-5xl flex justify-between items-center bg-slate-900/90 border-2 border-amber-500/50 rounded-2xl p-4 shadow-xl mb-4">
       <div class="flex items-center gap-3">
         <div class="px-3 py-1.5 bg-amber-500 text-slate-950 font-game text-xs rounded font-black">GALLERY HUB</div>
         <h2 class="text-xl sm:text-2xl font-black font-digital text-amber-400">RICE JUMP! GALLERY!</h2>
@@ -97,73 +97,87 @@
       </div>
     </div>
 
-    <div class="w-full max-w-4xl grid grid-cols-1 md:grid-cols-3 gap-6 my-auto">
-      <div onclick="handleCardClick(0)" id="card-0" class="gallery-card group bg-slate-900/90 border-2 border-slate-800 hover:border-cyan-400 rounded-3xl p-6 flex flex-col justify-between cursor-pointer shadow-2xl relative overflow-hidden">
+    <div class="w-full max-w-5xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 my-auto">
+      <div onclick="handleCardClick(0)" id="card-0" class="gallery-card group bg-slate-900/90 border-2 border-slate-800 hover:border-cyan-400 rounded-3xl p-5 flex flex-col justify-between cursor-pointer shadow-2xl relative overflow-hidden">
         <div class="absolute -right-4 -bottom-4 w-24 h-24 bg-cyan-500/10 rounded-full blur-xl group-hover:bg-cyan-500/25 transition"></div>
         <div>
           <div class="flex justify-between items-center mb-2">
-            <span class="px-3 py-1 bg-cyan-950 text-cyan-400 font-digital font-bold text-xs rounded-full border border-cyan-500/30">Version 1.0</span>
-            <span id="badge-0" class="text-2xl"></span>
+            <span class="px-2.5 py-0.5 bg-cyan-950 text-cyan-400 font-digital font-bold text-[10px] rounded-full border border-cyan-500/30">Version 1.0</span>
+            <span id="badge-0" class="text-xl"></span>
           </div>
-          <h3 class="text-2xl font-bold text-white group-hover:text-cyan-300 font-digital mb-4">Rice Jump!</h3>
+          <h3 class="text-xl font-bold text-white group-hover:text-cyan-300 font-digital mb-3">Rice Jump!</h3>
         </div>
-        <button class="w-full py-3 bg-cyan-600 hover:bg-cyan-500 text-white font-bold rounded-xl text-xs flex items-center justify-center gap-2 transition shadow-lg shadow-cyan-600/20">
+        <button class="w-full py-2.5 bg-cyan-600 hover:bg-cyan-500 text-white font-bold rounded-xl text-xs flex items-center justify-center gap-2 transition shadow-lg shadow-cyan-600/20">
           <i data-lucide="external-link" class="w-4 h-4"></i><span>접속하기</span>
         </button>
       </div>
 
-      <div onclick="handleCardClick(1)" id="card-1" class="gallery-card group bg-slate-900/90 border-2 border-slate-800 hover:border-orange-400 rounded-3xl p-6 flex flex-col justify-between cursor-pointer shadow-2xl relative overflow-hidden">
+      <div onclick="handleCardClick(1)" id="card-1" class="gallery-card group bg-slate-900/90 border-2 border-slate-800 hover:border-orange-400 rounded-3xl p-5 flex flex-col justify-between cursor-pointer shadow-2xl relative overflow-hidden">
         <div class="absolute -right-4 -bottom-4 w-24 h-24 bg-orange-500/10 rounded-full blur-xl group-hover:bg-orange-500/25 transition"></div>
         <div>
           <div class="flex justify-between items-center mb-2">
-            <span class="px-3 py-1 bg-orange-950 text-orange-400 font-digital font-bold text-xs rounded-full border border-orange-500/30">Version 2.0</span>
-            <span id="badge-1" class="text-2xl"></span>
+            <span class="px-2.5 py-0.5 bg-orange-950 text-orange-400 font-digital font-bold text-[10px] rounded-full border border-orange-500/30">Version 2.0</span>
+            <span id="badge-1" class="text-xl"></span>
           </div>
-          <h3 class="text-2xl font-bold text-white group-hover:text-orange-300 font-digital mb-4">Rice Jump! 2</h3>
+          <h3 class="text-xl font-bold text-white group-hover:text-orange-300 font-digital mb-3">Rice Jump! 2</h3>
         </div>
-        <button class="w-full py-3 bg-orange-600 hover:bg-orange-500 text-white font-bold rounded-xl text-xs flex items-center justify-center gap-2 transition shadow-lg shadow-orange-600/20">
+        <button class="w-full py-2.5 bg-orange-600 hover:bg-orange-500 text-white font-bold rounded-xl text-xs flex items-center justify-center gap-2 transition shadow-lg shadow-orange-600/20">
           <i data-lucide="external-link" class="w-4 h-4"></i><span>접속하기</span>
         </button>
       </div>
 
-      <div onclick="handleCardClick(2)" id="card-2" class="gallery-card group bg-slate-900/90 border-2 border-slate-800 hover:border-purple-400 rounded-3xl p-6 flex flex-col justify-between cursor-pointer shadow-2xl relative overflow-hidden">
+      <div onclick="handleCardClick(2)" id="card-2" class="gallery-card group bg-slate-900/90 border-2 border-slate-800 hover:border-purple-400 rounded-3xl p-5 flex flex-col justify-between cursor-pointer shadow-2xl relative overflow-hidden">
         <div class="absolute -right-4 -bottom-4 w-24 h-24 bg-purple-500/10 rounded-full blur-xl group-hover:bg-purple-500/25 transition"></div>
         <div>
           <div class="flex justify-between items-center mb-2">
-            <span class="px-3 py-1 bg-purple-950 text-purple-400 font-digital font-bold text-xs rounded-full border border-purple-500/30">Version 3.0</span>
-            <span id="badge-2" class="text-2xl"></span>
+            <span class="px-2.5 py-0.5 bg-purple-950 text-purple-400 font-digital font-bold text-[10px] rounded-full border border-purple-500/30">Version 3.0</span>
+            <span id="badge-2" class="text-xl"></span>
           </div>
-          <h3 class="text-2xl font-bold text-white group-hover:text-purple-300 font-digital mb-4">Rice Jump! 3</h3>
+          <h3 class="text-xl font-bold text-white group-hover:text-purple-300 font-digital mb-3">Rice Jump! 3</h3>
         </div>
-        <button class="w-full py-3 bg-purple-600 hover:bg-purple-500 text-white font-bold rounded-xl text-xs flex items-center justify-center gap-2 transition shadow-lg shadow-purple-600/20">
+        <button class="w-full py-2.5 bg-purple-600 hover:bg-purple-500 text-white font-bold rounded-xl text-xs flex items-center justify-center gap-2 transition shadow-lg shadow-purple-600/20">
+          <i data-lucide="external-link" class="w-4 h-4"></i><span>접속하기</span>
+        </button>
+      </div>
+
+      <div onclick="handleCardClick(3)" id="card-3" class="gallery-card group bg-slate-900/90 border-2 border-slate-800 hover:border-rose-400 rounded-3xl p-5 flex flex-col justify-between cursor-pointer shadow-2xl relative overflow-hidden">
+        <div class="absolute -right-4 -bottom-4 w-24 h-24 bg-rose-500/10 rounded-full blur-xl group-hover:bg-rose-500/25 transition"></div>
+        <div>
+          <div class="flex justify-between items-center mb-2">
+            <span class="px-2.5 py-0.5 bg-rose-950 text-rose-400 font-digital font-bold text-[10px] rounded-full border border-rose-500/30">Version 4.0</span>
+            <span id="badge-3" class="text-xl"></span>
+          </div>
+          <h3 class="text-xl font-bold text-white group-hover:text-rose-300 font-digital mb-3">Rice Jump! 4</h3>
+        </div>
+        <button class="w-full py-2.5 bg-rose-600 hover:bg-rose-500 text-white font-bold rounded-xl text-xs flex items-center justify-center gap-2 transition shadow-lg shadow-rose-600/20">
           <i data-lucide="external-link" class="w-4 h-4"></i><span>접속하기</span>
         </button>
       </div>
     </div>
 
-    <div class="w-full max-w-4xl mt-4">
-      <div onclick="handleCardClick(3)" id="card-3" class="gallery-card group bg-[#8b9bb4]/10 border-2 border-slate-800 hover:border-emerald-400 rounded-3xl p-6 flex flex-col sm:flex-row justify-between items-center cursor-pointer shadow-2xl relative overflow-hidden">
+    <div class="w-full max-w-5xl mt-4">
+      <div onclick="handleCardClick(4)" id="card-4" class="gallery-card group bg-[#8b9bb4]/10 border-2 border-slate-800 hover:border-emerald-400 rounded-3xl p-5 flex flex-col sm:flex-row justify-between items-center cursor-pointer shadow-2xl relative overflow-hidden">
         <div class="absolute inset-0 bg-emerald-500/5 opacity-50 pointer-events-none"></div>
-        <div class="flex items-center gap-4 mb-4 sm:mb-0">
-          <div class="w-14 h-14 bg-emerald-950/80 rounded-2xl border border-emerald-500/50 flex items-center justify-center font-game text-emerald-400 text-xl shadow-inner">
+        <div class="flex items-center gap-4 mb-3 sm:mb-0">
+          <div class="w-12 h-12 bg-emerald-950/80 rounded-2xl border border-emerald-500/50 flex items-center justify-center font-game text-emerald-400 text-sm shadow-inner">
             LCD
           </div>
           <div>
             <div class="flex items-center gap-2 mb-1">
-              <span class="px-2.5 py-0.5 bg-emerald-950 text-emerald-400 font-digital font-bold text-[10px] rounded-full border border-emerald-500/30">RETRO EDITION</span>
-              <span id="badge-3" class="text-xl"></span>
+              <span class="px-2 py-0.5 bg-emerald-950 text-emerald-400 font-digital font-bold text-[10px] rounded-full border border-emerald-500/30">RETRO EDITION</span>
+              <span id="badge-4" class="text-lg"></span>
             </div>
-            <h3 class="text-2xl font-bold text-white group-hover:text-emerald-300 font-digital">Rice Jump! LCD</h3>
-            <p class="text-xs text-emerald-400/80 font-digital mt-1">&#127911; 클래식 LCD 핸드헬드 스테이지 클리어 게임</p>
+            <h3 class="text-xl font-bold text-white group-hover:text-emerald-300 font-digital">Rice Jump! LCD</h3>
+            <p class="text-xs text-emerald-400/80 font-digital mt-0.5">&#127911; 클래식 LCD 핸드헬드 스테이지 클리어 게임</p>
           </div>
         </div>
-        <button class="w-full sm:w-auto px-6 py-3 bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-black rounded-xl text-xs flex items-center justify-center gap-2 transition shadow-lg shadow-emerald-600/20">
+        <button class="w-full sm:w-auto px-5 py-2.5 bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-black rounded-xl text-xs flex items-center justify-center gap-2 transition shadow-lg shadow-emerald-600/20">
           <i data-lucide="gamepad-2" class="w-4 h-4"></i><span>LCD 플레이</span>
         </button>
       </div>
     </div>
 
-    <div class="w-full max-w-4xl text-center text-xs text-slate-500 font-digital py-2">
+    <div class="w-full max-w-5xl text-center text-xs text-slate-500 font-digital py-1">
       &#128161; 방향키(&larr;, &rarr;, &uarr;, &darr;)로 이동하고 Enter/Space 또는 두 번 탭하여 실행하세요.
     </div>
   </div>
@@ -229,11 +243,12 @@
     lucide.createIcons();
 
     let selectedCardIndex = 0;
-    const totalCards = 4;
+    const totalCards = 5;
     const targetDomains = [
       "https://ricejump.kro.kr",
       "https://ricejump2.kro.kr",
       "https://ricejump3.kro.kr",
+      "https://ricejump4.kro.kr",
       "LCD_GAME"
     ];
 
@@ -312,7 +327,7 @@
         const badgeEl = document.getElementById('badge-' + i);
         
         if (i === selectedCardIndex) {
-          if (i === 3) {
+          if (i === 4) {
             cardEl.classList.add('border-emerald-400', 'bg-emerald-950/40', 'scale-[1.02]');
             cardEl.classList.remove('border-slate-800', 'bg-[#8b9bb4]/10');
           } else {
@@ -321,7 +336,7 @@
           }
           badgeEl.textContent = '🌾';
         } else {
-          if (i === 3) {
+          if (i === 4) {
             cardEl.classList.remove('border-emerald-400', 'bg-emerald-950/40', 'scale-[1.02]');
             cardEl.classList.add('border-slate-800', 'bg-[#8b9bb4]/10');
           } else {
@@ -364,10 +379,10 @@
           e.preventDefault();
         } else if (e.code === 'ArrowUp' || e.code === 'KeyW' || e.code === 'ArrowDown' || e.code === 'KeyS') {
           playAudio(sfxSelect);
-          if (selectedCardIndex === 3) {
-            selectedCardIndex = 1;
-          } else {
+          if (selectedCardIndex === 4) {
             selectedCardIndex = 3;
+          } else {
+            selectedCardIndex = 4;
           }
           updateCardHighlight();
           e.preventDefault();
